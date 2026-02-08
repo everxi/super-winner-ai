@@ -4,9 +4,14 @@ let ai: GoogleGenAI | null = null;
 
 const getAIClient = (): GoogleGenAI => {
   if (!ai) {
-    // Ideally process.env.API_KEY is available. 
-    // If not, we handle gracefully in the UI, but for this code we assume it exists or fail.
-    const apiKey = process.env.API_KEY || '';
+    const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY || '';
+    
+    if (!apiKey) {
+      throw new Error(
+        'Gemini API Key 未配置。请在部署前在 GitHub Secrets 中设置 GEMINI_API_KEY，或在本地 .env.local 文件中设置。'
+      );
+    }
+    
     ai = new GoogleGenAI({ apiKey });
   }
   return ai;
