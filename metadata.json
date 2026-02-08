@@ -1,0 +1,8 @@
+{
+  "name": "Super Winner AI",
+  "description": "An intelligent mobile CRM assistant featuring AI-powered customer insights, meeting minutes, and strategic analysis.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
